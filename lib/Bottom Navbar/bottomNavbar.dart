@@ -1,9 +1,9 @@
 import 'package:e_commerce_app/Colors/Colors.dart';
-import 'package:e_commerce_app/Screens/cart.dart';
+import 'package:e_commerce_app/Screens/Cart/cart.dart';
 import 'package:e_commerce_app/Screens/dashboard.dart';
-import 'package:e_commerce_app/Screens/homepage.dart';
+import 'package:e_commerce_app/Screens/Homepage/homepage.dart';
 import 'package:e_commerce_app/Screens/profie.dart';
-import 'package:e_commerce_app/favScreen.dart';
+import 'package:e_commerce_app/Screens/favScreen.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -55,7 +55,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 });
               },
               icon: Icon(
-                Icons.space_dashboard_outlined,
+                Icons.grid_view_outlined,
                 size: 32,
                 color: currentPage == 0 ? AppColor.OrangeColor : Colors.blueGrey,
               ),

@@ -1,6 +1,5 @@
 
 import 'package:e_commerce_app/Bottom%20Navbar/bottomNavbar.dart';
-import 'package:e_commerce_app/Screens/homepage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,9 +12,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
-      home:  BottomNavBar(),
+      home:  const BottomNavBar(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+       // primarySwatch: Colors.white,
         appBarTheme: const AppBarTheme(
           centerTitle: true,
           backgroundColor: Colors.white,

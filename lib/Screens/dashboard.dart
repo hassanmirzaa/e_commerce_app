@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/Screens/searchbar.dart';
+import 'package:e_commerce_app/Widgets/searchbar.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatefulWidget {
