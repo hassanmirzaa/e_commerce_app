@@ -70,7 +70,7 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                               children: [
                                 // SizedBox(width: Width*0.02,),
                                 Text(
-                                  widget.name,
+                                  info[widget.index]['name'],
                                   style: const TextStyle(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold),
@@ -84,7 +84,7 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                               children: [
                                 // SizedBox(width: Width*0.02,),
                                 Text(
-                                  widget.price.toString(),
+                                '\$ ${info[widget.index]['price']}',
                                   style: const TextStyle(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold),
@@ -200,25 +200,57 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                           SizedBox(
                             width: Width * 0.05,
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black
-                                      .withOpacity(0.5), // Shadow color
-                                  spreadRadius: 2, // Spread radius
-                                  blurRadius: 7, // Blur radius
-                                  offset: Offset(0, 1), // Shadow position
-                                ),
-                              ],
-                            ),
-                            child: CircleAvatar(
-                              child: Icon(
-                                Icons.favorite_border,
-                                color: Colors.black,
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                if(info[widget.index]['wishList']){
+                                  info[widget.index]['wishList'] =! info[widget.index]['wishList'];
+                                fav.add(info[widget.index]);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                 SnackBar(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                   ),
+                                   behavior: SnackBarBehavior.floating,
+                                   elevation: 10,
+                                   margin: const EdgeInsets.all(10),
+                                  content: const Text('Successfully added to Favourites!',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15
+                                  ),),
+                                  backgroundColor: AppColor.OrangeColor,
+                                  duration: const Duration(seconds: 2),
+                                  )
+                              );
+                                }
+                                else{
+                                  fav.remove(info[widget.index]);
+                                }
+                              });
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black
+                                        .withOpacity(0.5), // Shadow color
+                                    spreadRadius: 2, // Spread radius
+                                    blurRadius: 7, // Blur radius
+                                    offset: Offset(0, 1), // Shadow position
+                                  ),
+                                ],
                               ),
-                              backgroundColor: Colors.white,
+                              child: CircleAvatar(
+                                backgroundColor: Colors.white,
+                                child: Icon(
+                            info[widget.index]['wishList']
+                                ? Icons.favorite
+                                : Icons.favorite_border_outlined,
+                            color: Colors.black,
+                          ),
+                              ),
                             ),
                           ),
                         ],
@@ -250,60 +282,84 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                             borderRadius: BorderRadius.all(Radius.circular(40)),
                             color: Colors.black,
                           ),
-                          child: Wrap(
-                            children: [
-                              IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      x--;
-                                    });
-                                  },
-                                  icon: Icon(
-                                    Icons.add,
-                                    color: Colors.white,
-                                  )),
-                              Text(
-                                x.toString(),
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 30),
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      x++;
-                                    });
-                                  },
-                                  icon: Icon(Icons.add, color: Colors.white)),
-                            ],
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            child: Wrap(
+                              children: [
+                                IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        x--;
+                                      });
+                                    },
+                                    icon: Icon(
+                                      Icons.add,
+                                      color: Colors.white,
+                                    )),
+                                Text(
+                                  x.toString(),
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 30),
+                                ),
+                                IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        x++;
+                                      });
+                                    },
+                                    icon: Icon(Icons.add, color: Colors.white)),
+                              ],
+                            ),
                           ),
                         ),
                         InkWell(
                           onTap: () {
-                            setState(() {
-                               info[widget.index]['cart'] = info[widget.index]['cart'] == 0 ? 1 : 0;
+  setState(() {
+    if (info[widget.index]['cart'] == 0) {
+      info[widget.index]['cart'] = 1;
+      cartList.add(info[widget.index]);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          behavior: SnackBarBehavior.floating,
+          elevation: 10,
+          margin: const EdgeInsets.all(10),
+          content: const Text(
+            'Added to Cart!',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          ),
+          backgroundColor: AppColor.OrangeColor,
+          duration: const Duration(seconds: 2),
+        ),
+      );
+    } else {
+      info[widget.index]['cart'] = 0;
+      cartList.remove(info[widget.index]);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          behavior: SnackBarBehavior.floating,
+          elevation: 10,
+          margin: const EdgeInsets.all(10),
+          content: const Text(
+            'Removed from Cart!',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          ),
+          backgroundColor: AppColor.OrangeColor,
+          duration: const Duration(seconds: 2),
+        ),
+      );
+    }
+  });
+},
 
-                                if(info[widget.index]['cart'] ==0){
-                                  cartList.add(info[widget.index]);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                 SnackBar(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                   ),
-                                   behavior: SnackBarBehavior.floating,
-                                   elevation: 10,
-                                   margin: const EdgeInsets.all(10),
-                                  content: const Text('Added to Cart!',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15
-                                  ),),
-                                  backgroundColor: AppColor.OrangeColor,
-                                  duration: const Duration(seconds: 2),
-                                  )
-                              );
-                                }
-                            });
-                          },
                           child: Container(
                             height: Height * 0.06,
                             width: Width * 0.4,

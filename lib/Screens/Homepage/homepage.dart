@@ -167,5 +167,14 @@ List<Map<String, dynamic>> info = [
     'wishList': false,
     'cart': 0
   },
+  {
+    'name': 'Big name testing app hahaha',
+    'picture': 'Images/watch.jpg',
+    'price': 30000000000000,
+    'text':
+        'In this code, I moved the borderRadius property to the ClipRRect widget to ensure the rounded corners are applied to the clipped image. The BoxFit.cover will make sure the image covers the container completely, even if parts of the image are clipped to maintain the aspect ratio.',
+    'wishList': false,
+    'cart': 0
+  },
 ];
 

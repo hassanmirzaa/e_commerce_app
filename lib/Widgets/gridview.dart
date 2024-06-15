@@ -136,7 +136,7 @@ class _GridViewProductsState extends State<GridViewProducts> {
                       ),
                       Text(
                         // ignore: prefer_adjacent_string_concatenation
-                        "Rs " + "${info[index]['price']}",
+                        '\$ ${info[index]['price']}',
                         style: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
