@@ -9,6 +9,8 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
    bool x =true, y=true;
+   int followers = 174;
+   
   @override
   Widget build(BuildContext context) {
    
@@ -38,8 +40,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           color: Colors.black,
                           offset: Offset(0, 2))
                     ]),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(16.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,79 +49,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          const CircleAvatar(
-                            radius: 35,
+                          CircleAvatar(
+                            radius: 45,
                             backgroundImage: AssetImage('Images/me1.jpg'),
                           ),
-                          Wrap(children: [
-                            ElevatedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    x = ! x;
-
-                                  });
-                                },
-                                child: x==true 
-                                ?Text('Add Friend')
-                                :Text('Cancel Req')),
-                            SizedBox(
-                              width: Width * 0.02,
-                            ),
-                            ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  y =! y;
-                                });
-                              },
-                              child: y == true
-                              ?const Text('Follow')
-                              :const Text('Following'),
-                            ),
-                          ]),
-                        ],
-                      ),
-                      const Wrap(direction: Axis.vertical, children: [
+                          Wrap(direction: Axis.vertical, children: [
                         Text(
                           'Hassan mirza',
                           style: TextStyle(fontSize: 25),
                         ),
                         Text('Flutter Developer'),
                       ]),
-                      const Text(
-                          "A Flutter developer uses Flutter – a popular open-source framework by Google – to create cross-platform mobile applications. "),
-                      const Divider(),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Column(
-                            children: [
-                              Text('FRIENDS'),
-                              Text(
-                                '2318',
-                                style: TextStyle(fontSize: 25),
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text('FOLLOWING'),
-                              Text(
-                                '364',
-                                style: TextStyle(fontSize: 25),
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text('FOLLOWERS'),
-                              Text(
-                                '175',
-                                style: TextStyle(fontSize: 25),
-                              )
-                            ],
-                          ),
                         ],
-                      )
+                      ),
+                      
+                      Text(
+                          "A Flutter developer uses Flutter – a popular open-source framework by Google – to create cross-platform mobile applications. "),
+                      Divider(),
+                       Text(
+                        'Contact : 0327 - 2452589',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold
+                        ),
+                       ),
+                       Text(
+                        'E-Mail : hassanmirza@gmail.com',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold
+                        ),
+                       ),
+
                     ],
                   ),
                 ),

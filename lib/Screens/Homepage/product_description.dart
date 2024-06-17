@@ -55,7 +55,7 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.horizontal(
+                          borderRadius: const BorderRadius.horizontal(
                               left: Radius.circular(20),
                               right: Radius.circular(20)),
                           color: AppColor.ThemeColor),
@@ -63,19 +63,14 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 16, vertical: 8),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             //Name
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                // SizedBox(width: Width*0.02,),
-                                Text(
-                                  info[widget.index]['name'],
-                                  style: const TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
+                            Text(
+                              info[widget.index]['name'],
+                              style: const TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold),
                             ),
 
                             //Price
@@ -84,7 +79,7 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                               children: [
                                 // SizedBox(width: Width*0.02,),
                                 Text(
-                                '\$ ${info[widget.index]['price']}',
+                                  '\$ ${info[widget.index]['price']}',
                                   style: const TextStyle(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold),
@@ -153,14 +148,14 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                                     .withOpacity(0.5), // Shadow color
                                 spreadRadius: 2, // Spread radius
                                 blurRadius: 7, // Blur radius
-                                offset: Offset(0, 1), // Shadow position
+                                offset: const Offset(0, 1), // Shadow position
                               ),
                             ],
                           ),
-                          child: CircleAvatar(
+                          child: const CircleAvatar(
+                            backgroundColor: Colors.white,
                             child:
                                 Icon(Icons.arrow_back_ios, color: Colors.black),
-                            backgroundColor: Colors.white,
                           ),
                         ),
                       ),
@@ -187,13 +182,13 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                                         .withOpacity(0.5), // Shadow color
                                     spreadRadius: 2, // Spread radius
                                     blurRadius: 7, // Blur radius
-                                    offset: Offset(0, 1), // Shadow position
+                                    offset: const Offset(0, 1), // Shadow position
                                   ),
                                 ],
                               ),
-                              child: CircleAvatar(
-                                child: Icon(Icons.share, color: Colors.black),
+                              child: const CircleAvatar(
                                 backgroundColor: Colors.white,
+                                child: Icon(Icons.share, color: Colors.black),
                               ),
                             ),
                           ),
@@ -203,28 +198,28 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                           InkWell(
                             onTap: () {
                               setState(() {
-                                if(info[widget.index]['wishList']){
-                                  info[widget.index]['wishList'] =! info[widget.index]['wishList'];
-                                fav.add(info[widget.index]);
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                 SnackBar(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                   ),
-                                   behavior: SnackBarBehavior.floating,
-                                   elevation: 10,
-                                   margin: const EdgeInsets.all(10),
-                                  content: const Text('Successfully added to Favourites!',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15
-                                  ),),
-                                  backgroundColor: AppColor.OrangeColor,
-                                  duration: const Duration(seconds: 2),
-                                  )
-                              );
-                                }
-                                else{
+                                if (info[widget.index]['wishList']) {
+                                  info[widget.index]['wishList'] =
+                                      !info[widget.index]['wishList'];
+                                  fav.add(info[widget.index]);
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    behavior: SnackBarBehavior.floating,
+                                    elevation: 10,
+                                    margin: const EdgeInsets.all(10),
+                                    content: const Text(
+                                      'Successfully added to Favourites!',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15),
+                                    ),
+                                    backgroundColor: AppColor.OrangeColor,
+                                    duration: const Duration(seconds: 2),
+                                  ));
+                                } else {
                                   fav.remove(info[widget.index]);
                                 }
                               });
@@ -238,18 +233,18 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                                         .withOpacity(0.5), // Shadow color
                                     spreadRadius: 2, // Spread radius
                                     blurRadius: 7, // Blur radius
-                                    offset: Offset(0, 1), // Shadow position
+                                    offset: const Offset(0, 1), // Shadow position
                                   ),
                                 ],
                               ),
                               child: CircleAvatar(
                                 backgroundColor: Colors.white,
                                 child: Icon(
-                            info[widget.index]['wishList']
-                                ? Icons.favorite
-                                : Icons.favorite_border_outlined,
-                            color: Colors.black,
-                          ),
+                                  info[widget.index]['wishList']
+                                      ? Icons.favorite
+                                      : Icons.favorite_border_outlined,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ),
@@ -264,7 +259,7 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                 Container(
                     height: Height * 0.1,
                     width: Width * 0.87,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(40)),
                         color: Colors.black,
                         boxShadow: [
@@ -295,13 +290,13 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                                         x--;
                                       });
                                     },
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.add,
                                       color: Colors.white,
                                     )),
                                 Text(
                                   x.toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.white, fontSize: 30),
                                 ),
                                 IconButton(
@@ -310,65 +305,68 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                                         x++;
                                       });
                                     },
-                                    icon: Icon(Icons.add, color: Colors.white)),
+                                    icon: const Icon(Icons.add, color: Colors.white)),
                               ],
                             ),
                           ),
                         ),
                         InkWell(
                           onTap: () {
-  setState(() {
-    if (info[widget.index]['cart'] == 0) {
-      info[widget.index]['cart'] = 1;
-      cartList.add(info[widget.index]);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          behavior: SnackBarBehavior.floating,
-          elevation: 10,
-          margin: const EdgeInsets.all(10),
-          content: const Text(
-            'Added to Cart!',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-          ),
-          backgroundColor: AppColor.OrangeColor,
-          duration: const Duration(seconds: 2),
-        ),
-      );
-    } else {
-      info[widget.index]['cart'] = 0;
-      cartList.remove(info[widget.index]);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          behavior: SnackBarBehavior.floating,
-          elevation: 10,
-          margin: const EdgeInsets.all(10),
-          content: const Text(
-            'Removed from Cart!',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-          ),
-          backgroundColor: AppColor.OrangeColor,
-          duration: const Duration(seconds: 2),
-        ),
-      );
-    }
-  });
-},
-
+                            setState(() {
+                              if (info[widget.index]['cart'] == 0) {
+                                info[widget.index]['cart'] = 1;
+                                cartList.add(info[widget.index]);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    behavior: SnackBarBehavior.floating,
+                                    elevation: 10,
+                                    margin: const EdgeInsets.all(10),
+                                    content: const Text(
+                                      'Added to Cart!',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15),
+                                    ),
+                                    backgroundColor: AppColor.OrangeColor,
+                                    duration: const Duration(seconds: 2),
+                                  ),
+                                );
+                              } else {
+                                info[widget.index]['cart'] = 0;
+                                cartList.remove(info[widget.index]);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    behavior: SnackBarBehavior.floating,
+                                    elevation: 10,
+                                    margin: const EdgeInsets.all(10),
+                                    content: const Text(
+                                      'Removed from Cart!',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15),
+                                    ),
+                                    backgroundColor: AppColor.OrangeColor,
+                                    duration: const Duration(seconds: 2),
+                                  ),
+                                );
+                              }
+                            });
+                          },
                           child: Container(
                             height: Height * 0.06,
                             width: Width * 0.4,
                             decoration: BoxDecoration(
                               color: AppColor.OrangeColor,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(40)),
+                                  const BorderRadius.all(Radius.circular(40)),
                             ),
-                            child: Center(
+                            child: const Center(
                                 child: Text(
                               'Add to Cart',
                               style:

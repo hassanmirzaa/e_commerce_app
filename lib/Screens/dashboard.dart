@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/Colors/Colors.dart';
 import 'package:e_commerce_app/Widgets/searchbar.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +13,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Dashboard'),
-      ),
+     appBar: AppBar(
+      title: Text('Dashboard Screen'),
+     ),
       
     );
   }
