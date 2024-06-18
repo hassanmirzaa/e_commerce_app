@@ -1,99 +1,134 @@
 import 'package:e_commerce_app/Bottom%20Navbar/bottomNavbar.dart';
-import 'package:e_commerce_app/Colors/Colors.dart';
+import 'package:e_commerce_app/Screens/Signup/login.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
+  _SignUpScreenState createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController pswdController = TextEditingController();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
+    pswdController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController phoneController = TextEditingController();
-    final TextEditingController pswdController = TextEditingController();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(
-          "Sign up"
-        ),
+        title: const Text("Sign up"),
       ),
-      body: Center(
-        child: Form(child:
-         Column(mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-
-            CircleAvatar(
-              backgroundImage:AssetImage('Images/me1.jpg') ,
-              radius: MediaQuery.of(context).size.height*0.1,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextFormField(
-                controller: nameController,
-                keyboardType: TextInputType.name,
-                decoration: InputDecoration(
-                  hintText: 'Enter Name',
-                  labelText: 'Enter Name',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12))
-                  )
+      body: SingleChildScrollView(
+        child: Center(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  backgroundImage: const AssetImage('Images/me1.jpg'),
+                  radius: MediaQuery.of(context).size.height * 0.1,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    controller: nameController,
+                    keyboardType: TextInputType.name,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter Name',
+                      labelText: 'Enter Name',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      ),
                     ),
-              ),
-            ),
-
-             Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextFormField(
-                controller: emailController,
-                keyboardType: TextInputType.name,
-                decoration: InputDecoration(
-                  hintText: 'abc@gmail.com',
-                  labelText: 'Enter Email',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12))
-                  )
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                      hintText: 'abc@gmail.com',
+                      labelText: 'Enter Email',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      ),
                     ),
-              ),
-            ),
-
-             Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextFormField(
-                controller: phoneController,
-                keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
-                  hintText: '1234-5678910',
-                  labelText: 'Enter Phone',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12))
-                  )
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    controller: phoneController,
+                    keyboardType: TextInputType.phone,
+                    decoration: const InputDecoration(
+                      hintText: '1234-5678910',
+                      labelText: 'Enter Phone',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      ),
                     ),
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextFormField(
-                controller: pswdController,
-                keyboardType: TextInputType.name,
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: '*******',
-                  labelText: 'Enter Password',
-
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12))
-                  )
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    controller: pswdController,
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      hintText: '*******',
+                      labelText: 'Enter Password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      ),
                     ),
-              ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please enter a password";
+                      } else if (value.length < 6) {
+                        return "Password must contain at least 6 characters";
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Password is valid')),
+                      );
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                      );
+                    }
+                  },
+                  child: const Text('Sign up'),
+                ),
+              ],
             ),
-            ElevatedButton(onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) =>  BottomNavBar(),));
-        }, child: Text('Sign up')),
-          ],
-        )),
+          ),
+        ),
       ),
     );
   }
