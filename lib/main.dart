@@ -1,5 +1,6 @@
 
 import 'package:e_commerce_app/Bottom%20Navbar/bottomNavbar.dart';
+import 'package:e_commerce_app/Screens/Signup/signup.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
-      home:  const BottomNavBar(),
+      home:  const SignUpScreen(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
        // primarySwatch: Colors.white,

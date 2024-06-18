@@ -11,7 +11,7 @@ class DiscountField extends StatelessWidget {
     final Width = MediaQuery.of(context).size.width;
 
     return Container(
-      height: Height * 0.07,
+      height: Height * 0.06,
       width: Width * 0.95,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
@@ -23,7 +23,7 @@ class DiscountField extends StatelessWidget {
             hintText: hintText,
             border: InputBorder.none,
             suffixIcon: Padding(
-              padding: const EdgeInsets.only(right: 10),
+              padding: const EdgeInsets.all( 10),
               child: InkWell(
                   child: Text(
                 'Apply',

@@ -135,7 +135,7 @@ class _CartScreenState extends State<CartScreen> {
                                               cartList.remove(cartList[index]);
                                              }
                                             });
-                                            }, icon: Icon(Icons.add)),
+                                            }, icon: Icon(Icons.remove)),
 
                                         ],
                                       ),
