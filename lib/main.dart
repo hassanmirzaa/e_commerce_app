@@ -1,5 +1,3 @@
-
-import 'package:e_commerce_app/Bottom%20Navbar/bottomNavbar.dart';
 import 'package:e_commerce_app/Screens/Signup/signup.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +14,6 @@ class MyApp extends StatelessWidget {
       home:  const SignUpScreen(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-       // primarySwatch: Colors.white,
         appBarTheme: const AppBarTheme(
           centerTitle: true,
           backgroundColor: Colors.white,

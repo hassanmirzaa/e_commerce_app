@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/Colors/Colors.dart';
+import 'package:e_commerce_app/Constants/product_list.dart';
 import 'package:e_commerce_app/Screens/Homepage/homepage.dart';
 import 'package:e_commerce_app/Screens/Cart/cart.dart';
 import 'package:e_commerce_app/Screens/favScreen.dart';
@@ -280,6 +281,7 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                           child: Container(
                             decoration: BoxDecoration(
                               border: Border.all(color: Colors.white),
+                              color:Colors.white,
                               borderRadius: BorderRadius.circular(25),
                             ),
                             child: Wrap(
@@ -291,13 +293,13 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                                       });
                                     },
                                     icon: const Icon(
-                                      Icons.add,
-                                      color: Colors.white,
+                                      Icons.remove,
+                                      color: Colors.black,
                                     )),
                                 Text(
                                   x.toString(),
                                   style: const TextStyle(
-                                      color: Colors.white, fontSize: 30),
+                                      color: Colors.black, fontSize: 30),
                                 ),
                                 IconButton(
                                     onPressed: () {
@@ -305,7 +307,7 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                                         x++;
                                       });
                                     },
-                                    icon: const Icon(Icons.add, color: Colors.white)),
+                                    icon: const Icon(Icons.add, color: Colors.black)),
                               ],
                             ),
                           ),
@@ -314,7 +316,7 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                           onTap: () {
                             setState(() {
                               if (info[widget.index]['cart'] == 0) {
-                                info[widget.index]['cart'] = 1;
+                                info[widget.index]['cart'] = x;
                                 cartList.add(info[widget.index]);
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
@@ -334,7 +336,7 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                                     duration: const Duration(seconds: 2),
                                   ),
                                 );
-                              } else {
+                              } /*else {
                                 info[widget.index]['cart'] = 0;
                                 cartList.remove(info[widget.index]);
                                 ScaffoldMessenger.of(context).showSnackBar(
@@ -355,7 +357,7 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                                     duration: const Duration(seconds: 2),
                                   ),
                                 );
-                              }
+                              }*/
                             });
                           },
                           child: Container(

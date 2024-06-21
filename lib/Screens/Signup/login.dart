@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/Bottom%20Navbar/bottomNavbar.dart';
+import 'package:e_commerce_app/Screens/Bottom%20Navbar/bottomNavbar.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -22,6 +22,8 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Form(child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+
+          //Email
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextFormField(
@@ -36,6 +38,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
+
+          //Password
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextFormField(

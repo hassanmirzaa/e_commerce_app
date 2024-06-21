@@ -21,7 +21,7 @@ class _CartScreenState extends State<CartScreen> {
     double calculateTotalPrice() {
       double total = 0.0;
       for (var item in cartList) {
-        total += item['price'];
+        total += item['price']*item['cart'];
       }
       return total;
     }
@@ -98,6 +98,7 @@ class _CartScreenState extends State<CartScreen> {
                                     IconButton(
                                       onPressed: () {
                                         setState(() {
+                                          cartList[index]['cart'] ==0;
                                           cartList.remove(cartList[index]);
                                         });
                                       },
@@ -117,12 +118,12 @@ class _CartScreenState extends State<CartScreen> {
                                         children: [
                                           IconButton(onPressed: (){
                                             setState(() {
-                                              y++;
+                                             cartList[index]['cart']++;
                                             });
                                           }, icon: Icon(Icons.add)),
 
                                           Text(
-                                            y.toString(),
+                                            cartList[index]['cart'].toString(),
                                             style: TextStyle(
                                               fontSize: 16
                                             ),
@@ -130,8 +131,8 @@ class _CartScreenState extends State<CartScreen> {
 
                                             IconButton(onPressed: (){
                                               setState(() {
-                                              y--;
-                                             if(y==0){
+                                              cartList[index]['cart']--;
+                                             if(cartList[index]['cart']==0){
                                               cartList.remove(cartList[index]);
                                              }
                                             });

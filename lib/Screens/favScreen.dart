@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/Colors/Colors.dart';
+import 'package:e_commerce_app/Constants/product_list.dart';
 import 'package:e_commerce_app/Screens/Homepage/homepage.dart';
 import 'package:flutter/material.dart';
 
@@ -80,6 +81,7 @@ class _FavScreenState extends State<FavScreen> {
                               IconButton(
                                 onPressed: () {
                                   setState(() {
+                                    info[index]['wishList'] = !info[index]['wishList'];
                                     fav.remove(fav[index]);
                                   });
                                 },

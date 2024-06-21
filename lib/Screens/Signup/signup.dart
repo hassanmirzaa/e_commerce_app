@@ -1,4 +1,3 @@
-import 'package:e_commerce_app/Bottom%20Navbar/bottomNavbar.dart';
 import 'package:e_commerce_app/Screens/Signup/login.dart';
 import 'package:flutter/material.dart';
 
