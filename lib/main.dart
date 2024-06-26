@@ -1,5 +1,7 @@
+import 'package:e_commerce_app/Providers/fav_provider.dart';
 import 'package:e_commerce_app/Screens/Signup/signup.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,7 +12,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return  MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_) => FavProvider())
+    ],
+    child: MaterialApp(
       home:  const SignUpScreen(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -20,6 +25,6 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.black
         )
       ),
-    );
+    ),);
   }
 }
