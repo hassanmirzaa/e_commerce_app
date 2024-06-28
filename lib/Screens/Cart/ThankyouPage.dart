@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/Screens/Bottom%20Navbar/bottomNavbar.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -25,7 +26,7 @@ class ThankyouPage extends StatelessWidget {
               ),
             ),
             ElevatedButton(onPressed: (){
-              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBar(),));
             }, child: Text('OK'))
           ],
         ),

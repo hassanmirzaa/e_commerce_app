@@ -1,10 +1,8 @@
 import 'package:e_commerce_app/Colors/Colors.dart';
+import 'package:e_commerce_app/Providers/cart_provider.dart';
 import 'package:e_commerce_app/Providers/fav_provider.dart';
-import 'package:e_commerce_app/Screens/Homepage/homepage.dart';
 import 'package:e_commerce_app/Screens/Cart/cart.dart';
-import 'package:e_commerce_app/Screens/favScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class ProductDescriptionScreen extends StatefulWidget {
@@ -166,15 +164,7 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                           children: [
                             InkWell(
                               onTap: () {
-                                setState(() {
-                                  FavProviderValue.info[widget.index]['wishList'] =
-                                      !FavProviderValue.info[widget.index]['wishList'];
-                                  if (FavProviderValue.info[widget.index]['wishList']) {
-                                    FavProviderValue.fav.add(FavProviderValue.info[widget.index]);
-                                  } else {
-                                   FavProviderValue.fav.remove(FavProviderValue.info[widget.index]);
-                                  }
-                                });
+                               
                               },
                               child: Container(
                                 decoration: BoxDecoration(
@@ -199,58 +189,32 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                               width: Width * 0.05,
                             ),
                             InkWell(
-                              onTap: () {
-                                setState(() {
-                                  if (FavProviderValue.info[widget.index]['wishList']) {
-                                    FavProviderValue.info[widget.index]['wishList'] =
-                                        !FavProviderValue.info[widget.index]['wishList'];
-                                    FavProviderValue.fav.add(FavProviderValue.info[widget.index]);
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      behavior: SnackBarBehavior.floating,
-                                      elevation: 10,
-                                      margin: const EdgeInsets.all(10),
-                                      content: const Text(
-                                        'Successfully added to Favourites!',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15),
-                                      ),
-                                      backgroundColor: AppColor.OrangeColor,
-                                      duration: const Duration(seconds: 2),
-                                    ));
-                                  } else {
-                                    FavProviderValue.fav.remove(FavProviderValue.info[widget.index]);
-                                  }
-                                });
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black
-                                          .withOpacity(0.5), // Shadow color
-                                      spreadRadius: 2, // Spread radius
-                                      blurRadius: 7, // Blur radius
-                                      offset: const Offset(0, 1), // Shadow position
-                                    ),
-                                  ],
-                                ),
-                                child: CircleAvatar(
-                                  backgroundColor: Colors.white,
-                                  child: Icon(
-                                    FavProviderValue.info[widget.index]['wishList']
-                                        ? Icons.favorite
-                                        : Icons.favorite_border_outlined,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
+                onTap: () {
+                  FavProviderValue.onPress(widget.index);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 7,
+                        offset: const Offset(0, 1),
+                      ),
+                    ],
+                  ),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Icon(
+                              FavProviderValue.info[widget.index]['wishList']
+                                  ? Icons.favorite
+                                  : Icons.favorite_border_outlined,
+                              color: Colors.black,
                             ),
+                  ),
+                ),
+              ),
                           ],
                         )
                       ],
@@ -314,68 +278,70 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                               ),
                             ),
                           ),
-                          InkWell(
-                            onTap: () {
-                              setState(() {
-                                if (FavProviderValue.info[widget.index]['cart'] == 0) {
-                                  FavProviderValue.info[widget.index]['cart'] = x;
-                                  cartList.add(FavProviderValue.info[widget.index]);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20),
+                          Consumer<CartProvider>(
+                            builder: (context, CartProviderValue, child) =>  InkWell(
+                              onTap: () {
+                                
+                                  
+                                    FavProviderValue.info[widget.index]['cart'] += x;
+                                    CartProviderValue.cartList.add(FavProviderValue.info[widget.index]);
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(20),
+                                        ),
+                                        behavior: SnackBarBehavior.floating,
+                                        elevation: 10,
+                                        margin: const EdgeInsets.all(10),
+                                        content: const Text(
+                                          'Added to Cart!',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15),
+                                        ),
+                                        backgroundColor: AppColor.OrangeColor,
+                                        duration: const Duration(seconds: 2),
                                       ),
-                                      behavior: SnackBarBehavior.floating,
-                                      elevation: 10,
-                                      margin: const EdgeInsets.all(10),
-                                      content: const Text(
-                                        'Added to Cart!',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15),
+                                    );
+                                  /*else {
+                                    info[widget.index]['cart'] = 0;
+                                    cartList.remove(info[widget.index]);
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(20),
+                                        ),
+                                        behavior: SnackBarBehavior.floating,
+                                        elevation: 10,
+                                        margin: const EdgeInsets.all(10),
+                                        content: const Text(
+                                          'Removed from Cart!',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15),
+                                        ),
+                                        backgroundColor: AppColor.OrangeColor,
+                                        duration: const Duration(seconds: 2),
                                       ),
-                                      backgroundColor: AppColor.OrangeColor,
-                                      duration: const Duration(seconds: 2),
-                                    ),
-                                  );
-                                } /*else {
-                                  info[widget.index]['cart'] = 0;
-                                  cartList.remove(info[widget.index]);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      behavior: SnackBarBehavior.floating,
-                                      elevation: 10,
-                                      margin: const EdgeInsets.all(10),
-                                      content: const Text(
-                                        'Removed from Cart!',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15),
-                                      ),
-                                      backgroundColor: AppColor.OrangeColor,
-                                      duration: const Duration(seconds: 2),
-                                    ),
-                                  );
-                                }*/
-                              });
-                            },
-                            child: Container(
-                              height: Height * 0.06,
-                              width: Width * 0.4,
-                              decoration: BoxDecoration(
-                                color: AppColor.OrangeColor,
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(40)),
+                                    );
+                                  }*/                                                                                         
+                                
+                              },
+                              child: Container(
+                                height: Height * 0.06,
+                                width: Width * 0.4,
+                                decoration: BoxDecoration(
+                                  color: AppColor.OrangeColor,
+                                  borderRadius:
+                                      const BorderRadius.all(Radius.circular(40)),
+                                ),
+                                child: const Center(
+                                    child: Text(
+                                  'Add to Cart',
+                                  style:
+                                      TextStyle(color: Colors.white, fontSize: 20),
+                                )),
                               ),
-                              child: const Center(
-                                  child: Text(
-                                'Add to Cart',
-                                style:
-                                    TextStyle(color: Colors.white, fontSize: 20),
-                              )),
                             ),
                           )
                         ],

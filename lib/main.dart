@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/Providers/cart_provider.dart';
 import 'package:e_commerce_app/Providers/fav_provider.dart';
 import 'package:e_commerce_app/Screens/Signup/signup.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MultiProvider(providers: [
-      ChangeNotifierProvider(create: (_) => FavProvider())
+      ChangeNotifierProvider(create: (_) => FavProvider()),
+      ChangeNotifierProvider(create: (_) => CartProvider())
     ],
     child: MaterialApp(
       home:  const SignUpScreen(),
