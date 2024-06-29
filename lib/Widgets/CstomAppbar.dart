@@ -20,7 +20,6 @@ class CustomAppBar extends StatelessWidget {
                           padding: EdgeInsets.all(12.0),
                           child: Icon(
                             Icons.grid_view_outlined,
-                            color: Colors.black,
                           ),
                         ),
                       ),
@@ -36,7 +35,6 @@ class CustomAppBar extends StatelessWidget {
                           padding: EdgeInsets.all(12.0),
                           child: Icon(
                             Icons.notifications_on_outlined,
-                            color: Colors.black,
                           ),
                         ),
                       ),

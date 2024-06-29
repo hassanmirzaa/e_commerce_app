@@ -17,7 +17,7 @@ class _FavScreenState extends State<FavScreen> {
     final Width = MediaQuery.of(context).size.width;
     return Consumer<FavProvider>(
       builder: (context, FavProviderValue, child) => Scaffold(
-        backgroundColor: Colors.white,
+         backgroundColor: AppColor.ThemeColor,
         appBar: AppBar(
           title: const Text('Favourite Page '),
         ),

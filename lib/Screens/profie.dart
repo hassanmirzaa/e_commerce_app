@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/Colors/Colors.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -32,7 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: Height * 0.4,
                 width: Width * 0.9,
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColor.ThemeColor,
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: const [
                       BoxShadow(

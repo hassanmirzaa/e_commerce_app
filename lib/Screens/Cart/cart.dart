@@ -48,7 +48,7 @@ class _CartScreenState extends State<CartScreen> {
                               width: Width * 0.85,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
-                                color: Colors.white,
+                                color: AppColor.ThemeColor,
                               ),
                               child: Row(
                                 children: [
@@ -148,7 +148,7 @@ class _CartScreenState extends State<CartScreen> {
               child: Container(
                 height: Height*0.25,
                 decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColor.ThemeColor,
                 borderRadius: BorderRadius.horizontal(left: Radius.circular(20),right: Radius.circular(20))
                 ),
                 child: Column(
